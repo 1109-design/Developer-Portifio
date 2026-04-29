@@ -11,9 +11,11 @@ function ProjectCards(props) {
     <Card className="project-card-view">
       <Card.Body style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         {/* Icon at top */}
-        <div style={{ fontSize: "3rem", marginBottom: "15px", color: "#c770f0" }}>
-          {IconComponent && <IconComponent />}
-        </div>
+        {IconComponent && (
+          <div style={{ fontSize: "3rem", marginBottom: "15px", color: "#c770f0" }}>
+            <IconComponent />
+          </div>
+        )}
 
         <Card.Title>{props.title}</Card.Title>
         {props.subtitle && (
@@ -27,7 +29,7 @@ function ProjectCards(props) {
         </Card.Text>
 
         {/* Technologies */}
-        {props.technologies && (
+        {props.technologies && props.technologies.length > 0 && (
           <div style={{ marginBottom: "15px", display: "flex", flexWrap: "wrap", gap: "8px" }}>
             {props.technologies.map((tech, index) => (
               <span
@@ -38,6 +40,7 @@ function ProjectCards(props) {
                   backgroundColor: "#23283b",
                   borderRadius: "4px",
                   color: "#c770f0",
+                  border: "1px solid #c770f0",
                 }}
               >
                 {tech}
@@ -63,11 +66,6 @@ function ProjectCards(props) {
             >
               <CgWebsite /> &nbsp;
               {"Demo"}
-            </Button>
-          )}
-          {props.ghLink === undefined && props.demoLink === undefined && (
-            <Button variant="primary" href="#" disabled>
-              View Details
             </Button>
           )}
         </div>
