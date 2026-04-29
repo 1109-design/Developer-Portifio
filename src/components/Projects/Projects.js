@@ -6,15 +6,10 @@ import Particle from "../Particle";
 // Import icons from react-icons
 import {
   SiLaravel,
-  SiReact,
-  SiInertia,
   SiPhp,
-  SiMysql,
   SiPython,
   SiGo,
   SiFlutter,
-  SiFirebase,
-  SiDart,
 } from "react-icons/si";
 
 function Projects() {
