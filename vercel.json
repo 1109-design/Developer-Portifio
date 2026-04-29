@@ -2,9 +2,5 @@
   "buildCommand": "npm run build",
   "devCommand": "npm start",
   "installCommand": "npm install",
-  "framework": "react",
-  "nodeVersion": "24.x",
-  "env": [],
-  "envPrefix": "",
-  "functionPattern": "api/**/*.js"
+  "framework": "create-react-app"
 }
