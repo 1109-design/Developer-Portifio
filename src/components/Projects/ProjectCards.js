@@ -5,36 +5,75 @@ import { CgWebsite } from "react-icons/cg";
 import { BsGithub } from "react-icons/bs";
 
 function ProjectCards(props) {
+  const IconComponent = props.icon;
+
   return (
     <Card className="project-card-view">
-      <Card.Img variant="top" src={props.imgPath} alt="card-img" />
-      <Card.Body>
+      <Card.Body style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        {/* Icon at top */}
+        <div style={{ fontSize: "3rem", marginBottom: "15px", color: "#c770f0" }}>
+          {IconComponent && <IconComponent />}
+        </div>
+
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
+        {props.subtitle && (
+          <Card.Subtitle style={{ color: "#b8b9be", marginBottom: "10px", fontSize: "0.9rem" }}>
+            {props.subtitle}
+          </Card.Subtitle>
+        )}
+
+        <Card.Text style={{ textAlign: "justify", flex: 1 }}>
           {props.description}
         </Card.Text>
-        <Button variant="primary" href={props.ghLink} target="_blank">
-          <BsGithub /> &nbsp;
-          {props.isBlog ? "Blog" : "GitHub"}
-        </Button>
-        {"\n"}
-        {"\n"}
 
-        {/* If the component contains Demo link and if it's not a Blog then, it will render the below component  */}
-
-        {!props.isBlog && props.demoLink && (
-          <Button
-            variant="primary"
-            href={props.demoLink}
-            target="_blank"
-            style={{ marginLeft: "10px" }}
-          >
-            <CgWebsite /> &nbsp;
-            {"Demo"}
-          </Button>
+        {/* Technologies */}
+        {props.technologies && (
+          <div style={{ marginBottom: "15px", display: "flex", flexWrap: "wrap", gap: "8px" }}>
+            {props.technologies.map((tech, index) => (
+              <span
+                key={index}
+                style={{
+                  fontSize: "0.75rem",
+                  padding: "4px 8px",
+                  backgroundColor: "#23283b",
+                  borderRadius: "4px",
+                  color: "#c770f0",
+                }}
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         )}
+
+        {/* Buttons */}
+        <div>
+          {props.ghLink && (
+            <Button variant="primary" href={props.ghLink} target="_blank">
+              <BsGithub /> &nbsp;
+              {props.isBlog ? "Blog" : "GitHub"}
+            </Button>
+          )}
+          {!props.isBlog && props.demoLink && (
+            <Button
+              variant="primary"
+              href={props.demoLink}
+              target="_blank"
+              style={{ marginLeft: "10px" }}
+            >
+              <CgWebsite /> &nbsp;
+              {"Demo"}
+            </Button>
+          )}
+          {props.ghLink === undefined && props.demoLink === undefined && (
+            <Button variant="primary" href="#" disabled>
+              View Details
+            </Button>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
 }
+
 export default ProjectCards;
